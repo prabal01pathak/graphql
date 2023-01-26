@@ -23,10 +23,10 @@ if __name__ == '__main__':
     # connection_string = sys.argv[1]
     connection_string = os.getenv("connection_string")
     hub_name = "Hub"
-    service = WebPubSubServiceClient.from_connection_string(connection_string, hub=hub_name)
-    token = service.get_client_access_token()
-
-    try:
-        asyncio.get_event_loop().run_until_complete(connect(token['url']))
-    except KeyboardInterrupt:
-        pass
+    for i in range(30):
+        service = WebPubSubServiceClient.from_connection_string(connection_string, hub=f"{hub_name}{i}")
+        token = service.get_client_access_token()
+        try:
+            asyncio.get_event_loop().run_until_complete(connect(token['url']))
+        except KeyboardInterrupt:
+            pass
