@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Univer Server</title>
+</head>
+
+<body>
+    <script>
+        var ws = new WebSocket("wss://8080-prabal01pathak-graphql-6z2ouilz3n9.ws-us86.gitpod.io/ws")
+        //Triggered when the connection is opened
+        ws.onopen = function (evt) {
+            console.log("Connection open...");
+            ws.send("Hello WebSockets!");
+        };
+        //Triggered when a message is received
+        ws.onmessage = function (evt) {
+            console.log("Received Message: " + evt.data);
+        };
+        //Triggered when the connection is closed
+        ws.onclose = function (evt) {
+            console.log("Connection closed.");
+        };
+    </script>
+</body>
